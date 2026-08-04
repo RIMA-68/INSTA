@@ -8,13 +8,20 @@
     />
     <title>Owi Magazine — 음악 아티클 아카이브</title>
 
-    <!-- =========================================================
-     GA4 / GTM 연결 자리
-     배포 시 아래 GTM-XXXXXXX 를 팀 컨테이너 ID로 교체하세요.
-     이 페이지는 dataLayer 이벤트를 이미 전송합니다:
-       page_view / select_category / view_article /
-       newsletter_subscribe / create_article / edit_article / delete_article
-     ========================================================= -->
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-YC2VRE1GB4"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-YC2VRE1GB4");
+    </script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function track(event, params) {
