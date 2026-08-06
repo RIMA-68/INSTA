@@ -339,12 +339,12 @@
       }
       .row {
         display: grid;
-        grid-template-columns: 96px 1fr;
+        grid-template-columns: 116px 1fr;
         gap: 16px;
         padding: 18px 0;
         border-bottom: 1px solid var(--line);
         cursor: pointer;
-        align-items: stretch;
+        align-items: start;
       }
       .row:last-child {
         border-bottom: none;
@@ -353,14 +353,18 @@
         opacity: 0.7;
       }
       .row .thumb {
-        width: 96px;
+        width: 116px;
+        height: 116px;
         border-radius: 14px;
         overflow: hidden;
         box-shadow: var(--shadow);
-        align-self: stretch;
       }
       .row .rtext {
         min-width: 0;
+        min-height: 116px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
       }
       .row .rtext .rcat {
         font-size: 11px;
@@ -368,9 +372,9 @@
         color: var(--ink-2);
         letter-spacing: 0.06em;
       }
-      .row .rtext h3 {
-        margin: 6px 0 6px;
-        font-size: 15.5px;
+      .row .rtext .rbody h3 {
+        margin: 0 0 5px;
+        font-size: 16px;
         font-weight: 700;
         line-height: 1.4;
         letter-spacing: -0.01em;
@@ -380,7 +384,7 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
       }
-      .row .rtext .rex {
+      .row .rtext .rbody .rex {
         margin: 0;
         font-size: 12.5px;
         color: var(--ink-2);
@@ -391,7 +395,6 @@
         overflow: hidden;
       }
       .row .rtext .rmeta {
-        margin-top: 9px;
         font-size: 11px;
         color: var(--ink-3);
         font-weight: 500;
@@ -2197,8 +2200,9 @@
           .map(
             (a) => `<article class="row" data-id="${a.id}">
     <div class="thumb">${coverInner(a)}</div>
-    <div class="rtext"><div class="rcat">${catLabel(a.cat)}</div><h3>${esc(a.title)}</h3>
-      <p class="rex">${esc(a.excerpt)}</p><div class="rmeta">${esc(a.date)}</div></div>
+    <div class="rtext"><div class="rcat">${catLabel(a.cat)}</div>
+      <div class="rbody"><h3>${esc(a.title)}</h3><p class="rex">${esc(a.excerpt)}</p></div>
+      <div class="rmeta">${esc(a.date)}</div></div>
   </article>`,
           )
           .join("");
@@ -3096,6 +3100,7 @@
           fav_genre: genre,
           gear_level: gear,
         });
+        const body = document.getElementById("quizBody");
         body.innerHTML = resultBodyHTML(key, type, genre, gear);
         wireResult(key, type, genre, gear);
       }
