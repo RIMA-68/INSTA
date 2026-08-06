@@ -126,7 +126,7 @@
       }
       .brand .wm {
         font-size: 18px;
-        font-weight: 500;
+        font-weight: 800;
         letter-spacing: -0.01em;
         white-space: nowrap;
         color: var(--ink-2);
@@ -344,7 +344,7 @@
         padding: 18px 0;
         border-bottom: 1px solid var(--line);
         cursor: pointer;
-        align-items: start;
+        align-items: stretch;
       }
       .row:last-child {
         border-bottom: none;
@@ -354,10 +354,10 @@
       }
       .row .thumb {
         width: 96px;
-        height: 96px;
         border-radius: 14px;
         overflow: hidden;
         box-shadow: var(--shadow);
+        align-self: stretch;
       }
       .row .rtext {
         min-width: 0;
@@ -1552,7 +1552,6 @@
         border-color: var(--ink);
       }
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   </head>
   <body>
     <svg width="0" height="0" style="position: absolute" aria-hidden="true">
@@ -3117,8 +3116,6 @@
         </div>
         <div class="r-brand">Meow Han Ch’wi Hyang · 음악 유형 테스트</div>
       </div>
-      <img id="rShotImg" class="r-shot-img" alt="나의 음악 유형 결과 이미지" />
-      <div id="rShotHint" class="r-shot-hint">이미지를 길게 눌러(또는 우클릭) 저장할 수 있어요</div>
       <div class="r-actions">
         <button class="r-primary" id="rShare">결과 공유하기</button>
         <button class="r-ghost" id="rHome">홈으로 돌아가기</button>
@@ -3163,29 +3160,6 @@
             }
           }
         };
-        makeResultImage();
-      }
-      async function makeResultImage() {
-        const node = document.getElementById("rShot");
-        const img = document.getElementById("rShotImg");
-        const hint = document.getElementById("rShotHint");
-        if (!node || !img || typeof html2canvas === "undefined") return;
-        try {
-          if (document.fonts && document.fonts.ready) {
-            await document.fonts.ready;
-          }
-          const canvas = await html2canvas(node, {
-            backgroundColor: "#ffffff",
-            scale: 2,
-            useCORS: true,
-          });
-          img.src = canvas.toDataURL("image/png");
-          img.style.display = "block";
-          if (hint) {
-            hint.style.display = "block";
-          }
-          node.style.display = "none";
-        } catch (e) {}
       }
       function showSharedResult(key, genre, gear) {
         const type = TYPES[key];
